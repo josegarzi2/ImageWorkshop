@@ -84,7 +84,7 @@ class ImageWorkshop
             break;
                 
             case 'webp':
-                if (!function_exists('imagewebp')) {
+                if (!function_exists('imageCreateFromWEBP')) {
                     throw new ImageWorkshopException('Webp format not supported by your PHP version', static::ERROR_NOT_AN_IMAGE_FILE);
                 }
                 
