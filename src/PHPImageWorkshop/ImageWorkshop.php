@@ -82,9 +82,17 @@ class ImageWorkshop
             case 'png':
                 $image = imageCreateFromPNG($path);
             break;
+                
+            case 'webp':
+                if (!function_exists('imagewebp')) {
+                    throw new ImageWorkshopException('Webp format not supported by your PHP version', static::ERROR_NOT_AN_IMAGE_FILE);
+                }
+                
+                $image = imageCreateFromWEBP($path);
+            break;
 
             default:
-                throw new ImageWorkshopException('Not an image file (jpeg/png/gif) at "'.$path.'"', static::ERROR_NOT_AN_IMAGE_FILE);
+                throw new ImageWorkshopException('Not an image file (jpeg/png/gif/webp) at "'.$path.'"', static::ERROR_NOT_AN_IMAGE_FILE);
             break;
         }
 
